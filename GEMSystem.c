@@ -9,7 +9,7 @@ typedef struct {//考生信息结构体
     char admissionNumber[20];
     char major[50];
     int isFreshGraduate;
-    int scores[4]; // [Politics, Math, English, MajorSubject]
+    int scores[4]; // [政治, Math, English, MajorSubject]
 } Student;
 
 Student students[MAX_STUDENTS];//考生信息数组
@@ -37,27 +37,27 @@ void addStudent() {
     }
 
     Student newStudent;
-    printf("Enter name: ");
+    printf("输入姓名: ");
     scanf("%s", newStudent.name);
-    printf("Enter admission number: ");
+    printf("学号: ");
     scanf("%s", newStudent.admissionNumber);
-    printf("Enter major: ");
+    printf("专业: ");
     scanf("%s", newStudent.major);
-    printf("Is the student a fresh graduate? (1 for Yes, 0 for No): ");
+    printf("是否应届生? (1 for Yes, 0 for No): ");
     scanf("%d", &newStudent.isFreshGraduate);
-    printf("Enter scores (Politics Math English MajorSubject): ");
+    printf("输入成绩 (政治 数学 英语 专业课程): ");
     for (int i = 0; i < 4; i++) {
         scanf("%d", &newStudent.scores[i]);
     }
 
     students[studentCount++] = newStudent;
-    printf("Student added successfully.\n");
+    printf("已录入考生信息.\n");
     saveData();
 }
 
 void deleteStudent() {
     char admissionNumber[20];
-    printf("Enter the admission number of the student to delete: ");
+    printf("请输入要删除考生的学号: ");
     scanf("%s", admissionNumber);
 
     for (int i = 0; i < studentCount; i++) {
@@ -66,7 +66,7 @@ void deleteStudent() {
                 students[j] = students[j + 1];
             }
             studentCount--;
-            printf("Student deleted successfully.\n");
+            printf("已删除考生信息.\n");
             saveData();
             return;
         }
@@ -77,16 +77,16 @@ void deleteStudent() {
 
 void queryStudent() {
     char admissionNumber[20];
-    printf("Enter the admission number to search: ");
+    printf("请输入学号: ");
     scanf("%s", admissionNumber);
 
     for (int i = 0; i < studentCount; i++) {
         if (strcmp(students[i].admissionNumber, admissionNumber) == 0) {
-            printf("Name: %s\n", students[i].name);
-            printf("Admission Number: %s\n", students[i].admissionNumber);
-            printf("Major: %s\n", students[i].major);
-            printf("Fresh Graduate: %s\n", students[i].isFreshGraduate ? "Yes" : "No");
-            printf("Scores: Politics: %d, Math: %d, English: %d, Major Subject: %d\n",
+            printf("姓名: %s\n", students[i].name);
+            printf("学号: %s\n", students[i].admissionNumber);
+            printf("专业: %s\n", students[i].major);
+            printf("是否应届: %s\n", students[i].isFreshGraduate ? "Yes" : "No");
+            printf("成绩: 政治: %d, 数学: %d, 英语: %d, 专业课程: %d\n",
                    students[i].scores[0], students[i].scores[1], students[i].scores[2], students[i].scores[3]);
             return;
         }
@@ -97,7 +97,7 @@ void queryStudent() {
 
 void sortStudents() {
     int subjectIndex;
-    printf("Enter the subject index to sort by (0: Politics, 1: Math, 2: English, 3: Major Subject): ");
+    printf("输入排序依据 (0: 政治, 1: 数学, 2: 英语, 3: 专业课程): ");
     scanf("%d", &subjectIndex);
 
     for (int i = 0; i < studentCount - 1; i++) {
@@ -110,19 +110,19 @@ void sortStudents() {
         }
     }
 
-    printf("Students sorted successfully by subject %d.\n", subjectIndex);
+    printf("已按照%d成绩进行排序.\n", subjectIndex);
 }
 
 void showAdminMenu() {
     int choice;
     while (1) {
         printf("\nAdministrator Menu:\n");
-        printf("1. Add Student\n");
-        printf("2. Delete Student\n");
+        printf("1. 录入考生信息\n");
+        printf("2. 删除考生信息\n");
         printf("3. Query Student\n");
         printf("4. Sort Students\n");
-        printf("5. Return to Main Menu\n");
-        printf("Enter your choice: ");
+        printf("5. 返回主菜单\n");
+        printf("输入选项: ");
         scanf("%d", &choice);
 
         switch (choice) {
@@ -155,7 +155,7 @@ void queryScore() {
     for (int i = 0; i < studentCount; i++) {
         if (strcmp(students[i].admissionNumber, admissionNumber) == 0) {
             printf("Name: %s\n", students[i].name);
-            printf("Scores: Politics: %d, Math: %d, English: %d, Major Subject: %d\n",
+            printf("Scores: 政治: %d, Math: %d, English: %d, Major Subject: %d\n",
                    students[i].scores[0], students[i].scores[1], students[i].scores[2], students[i].scores[3]);
             return;
         }
